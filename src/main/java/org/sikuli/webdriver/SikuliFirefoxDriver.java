@@ -87,7 +87,7 @@ public class SikuliFirefoxDriver extends FirefoxDriver {
 
 		ScreenLocation center = imageRegion.getCenter();
 		WebElement foundWebElement = findElementByLocation(center.x, center.y);
-		return new ImageElement(this, foundWebElement, 
+		return new DefaultImageElement(this, foundWebElement, 
 				imageRegion.x,
 				imageRegion.y,
 				imageRegion.width,
@@ -168,7 +168,7 @@ public class SikuliFirefoxDriver extends FirefoxDriver {
 				bestCandidate.getSize().width, bestCandidate.getSize().height);
 		
 		
-		ImageElement imageElement = new ImageElement(this, bestCandidate, 
+		ImageElement imageElement = new DefaultImageElement(this, bestCandidate, 
 				imageRegion.x - bestCandidateLocation.x,
 				imageRegion.y - bestCandidateLocation.y,
 				imageRegion.width,
