@@ -3,31 +3,16 @@ package org.sikuli.webdriver;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.internal.Locatable;
 import org.sikuli.api.DefaultScreenRegion;
 import org.sikuli.api.ImageTarget;
 import org.sikuli.api.ScreenLocation;
 import org.sikuli.api.ScreenRegion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 public class SikuliFirefoxDriver extends FirefoxDriver {
 
