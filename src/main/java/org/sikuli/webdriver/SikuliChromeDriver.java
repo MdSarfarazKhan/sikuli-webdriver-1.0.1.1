@@ -6,8 +6,7 @@ import java.net.URL;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.sikuli.api.DefaultScreenRegion;
 import org.sikuli.api.ImageTarget;
 import org.sikuli.api.ScreenLocation;
@@ -15,20 +14,17 @@ import org.sikuli.api.ScreenRegion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SikuliFirefoxDriver extends FirefoxDriver  implements SikuliWebDriver{
-
-	static Logger logger = LoggerFactory.getLogger(SikuliFirefoxDriver.class);
+public class SikuliChromeDriver extends ChromeDriver implements SikuliWebDriver{
+	
+	static Logger logger = LoggerFactory.getLogger(SikuliChromeDriver.class);
 
 	private static final int DEFAULT_WAIT_TIMEOUT_MSECS = 10000;
+	ScreenRegion webdriverRegion;
 
-	public SikuliFirefoxDriver(){
-		super();	
+	public SikuliChromeDriver(){
+		super();
 	}
-	
-	public SikuliFirefoxDriver(FirefoxProfile p){
-		super(p);
-	}
-	
+
 	public WebElement findElementByLocation(int x, int y){
 		return (WebElement) ((JavascriptExecutor) this).executeScript("return document.elementFromPoint(" + x + "," + y + ")");
 	}
@@ -58,14 +54,14 @@ public class SikuliFirefoxDriver extends FirefoxDriver  implements SikuliWebDriv
 				r.width,
 				r.height);
 	}
-	@Override
+	
 	public DefaultScreenRegion getWebDriverScreenRegion() {
 		// TODO Auto-generated method stub
 		WebDriverScreen webDriverScreen;
 		try {
 			webDriverScreen = new WebDriverScreen(this);
 		} catch (IOException e1) {
-			throw new RuntimeException("Unable to initialize SikuliFireFoxDriver screen");
+			throw new RuntimeException("Unable to initialize SikuliChromeDriver screen");
 		}
 		return new DefaultScreenRegion(webDriverScreen);
 	}

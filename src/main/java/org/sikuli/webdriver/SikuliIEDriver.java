@@ -6,8 +6,7 @@ import java.net.URL;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.sikuli.api.DefaultScreenRegion;
 import org.sikuli.api.ImageTarget;
 import org.sikuli.api.ScreenLocation;
@@ -15,27 +14,24 @@ import org.sikuli.api.ScreenRegion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SikuliFirefoxDriver extends FirefoxDriver  implements SikuliWebDriver{
-
-	static Logger logger = LoggerFactory.getLogger(SikuliFirefoxDriver.class);
+public class SikuliIEDriver extends InternetExplorerDriver implements SikuliWebDriver{
+	
+	static Logger logger = LoggerFactory.getLogger(SikuliIEDriver.class);
 
 	private static final int DEFAULT_WAIT_TIMEOUT_MSECS = 10000;
 
-	public SikuliFirefoxDriver(){
-		super();	
+
+	public SikuliIEDriver(){
+		super();
 	}
-	
-	public SikuliFirefoxDriver(FirefoxProfile p){
-		super(p);
-	}
-	
+
 	public WebElement findElementByLocation(int x, int y){
 		return (WebElement) ((JavascriptExecutor) this).executeScript("return document.elementFromPoint(" + x + "," + y + ")");
 	}
 
 	public ImageElement findImageElement(URL imageUrl) {
 		
-		DefaultScreenRegion webdriverRegion=getWebDriverScreenRegion();
+		DefaultScreenRegion webdriverRegion=getWebDriverScreenRegion(); 
 		ImageTarget target = new ImageTarget(imageUrl);
 		final ScreenRegion imageRegion = webdriverRegion.wait(target, DEFAULT_WAIT_TIMEOUT_MSECS);
 		
@@ -58,6 +54,7 @@ public class SikuliFirefoxDriver extends FirefoxDriver  implements SikuliWebDriv
 				r.width,
 				r.height);
 	}
+
 	@Override
 	public DefaultScreenRegion getWebDriverScreenRegion() {
 		// TODO Auto-generated method stub
@@ -65,7 +62,7 @@ public class SikuliFirefoxDriver extends FirefoxDriver  implements SikuliWebDriv
 		try {
 			webDriverScreen = new WebDriverScreen(this);
 		} catch (IOException e1) {
-			throw new RuntimeException("Unable to initialize SikuliFireFoxDriver screen");
+			throw new RuntimeException("unable to initialize SikuliInternetExplorerDriver");
 		}
 		return new DefaultScreenRegion(webDriverScreen);
 	}

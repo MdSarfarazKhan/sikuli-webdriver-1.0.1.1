@@ -19,7 +19,7 @@ class WebDriverScreen implements Screen {
 
 	public WebDriverScreen(TakesScreenshot driver) throws IOException{
 		this.driver = driver;		
-		File screenshotFile = driver.getScreenshotAs(OutputType.FILE);
+		File screenshotFile = this.driver.getScreenshotAs(OutputType.FILE);
 		BufferedImage b = ImageIO.read(screenshotFile);
 		size = new Dimension(b.getWidth(),b.getHeight());
 	}

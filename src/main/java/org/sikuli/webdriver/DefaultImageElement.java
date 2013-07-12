@@ -14,12 +14,31 @@ public class DefaultImageElement implements ImageElement {
 				" arguments[0].dispatchEvent(evt);", containerWebElement);
 	}
 	
+	private void executeJavaScriptTypeAction(String text,int x,int y){
+		((JavascriptExecutor) driver).executeScript("var elem = document.elementFromPoint("+x+","+ y+");" +
+				"elem.value=\""+text+"\";");
+	}
+	
+//	private void executeJavaScriptHoverAction(int x,int y){
+//		System.out.println("about to focus at "+x+" "+y);
+//		((JavascriptExecutor) driver).executeScript("var elem = document.elementFromPoint("+x+","+ y+");" +"elem.focus();");
+//		System.out.println("focus executed");
+//	}
+	
 	public void click() {
 		executeJavaScriptMouseAction("click", x + width/2, y + height/2);
 	}
 	
 	public void doubleClick() {
 		executeJavaScriptMouseAction("dblclick", x + width/2, y + height/2);
+	}
+	
+	public void type(String value){
+		executeJavaScriptTypeAction(value, x + width/2, y + height/2);
+	}
+	
+	public void hover(){
+	//	executeJavaScriptHoverAction(x + width/2, y + height/2);
 	}
 
 	final private WebDriver driver;
